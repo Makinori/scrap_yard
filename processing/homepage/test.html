@@ -1,0 +1,49 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title> mail form </title>
+        
+        <script type="text/javascript">
+         function send_mail(){
+             var _name    = mail_form._name.value;
+             var _mail    = mail_form._mail.value;
+             var _message = mail_form._message.value;
+             alert("今はメッセージは送れません");
+             //send_mail(name, massage, mail);
+         }
+        </script>
+        
+    </head>
+    <body>
+        <p>
+            <center>
+                メッセージなどは下のフォームから送ってください <br /> <br />
+                <form name="mail_form" >
+                    
+                    <table border="0">
+                        <tbody>
+                            <tr> 
+                                <td> お名前</td>
+                                <td> <input type="text" size="40" name="_name" /> </td>
+                            </tr>
+                            <tr>
+                                <td> メール </td>
+                                <td> <input type="text" size="40" name="_mail" /> </td>
+                            </tr>
+                            <tr>
+                                <td> メッセージ </td>
+                                <td> <textarea name="_message" rows="10" cols="40"> </textarea> </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <br />
+                    <input type="submit" value="送信" onclick="send_mail()" />
+                </form>
+                </ center>
+        </p>
+    </body>
+</html>

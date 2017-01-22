@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+		<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<link href="style.css" rel="stylesheet" type="text/css" /> 
+				<title> nazo-tool. like this --Makinori's homepage </title>
+		</head>
+		<body>
+				<div id="wrapper">
+						<div id="header">
+                <div class="title">
+                    Makinori's homepage
+                </div>
+                <p>そもそも全てが嘘ですが何か？</p>
+				    </div>
+				    <div id="contents">
+								<div id="main">
+                    <h1>嫁システム 中間報告 配布資料</h1>
+                    <p>
+                        System-YOME Version 0.0.1 undefined-data-edition1<br />
+                        author : Ikegami Mkainori <br />
+                        documrnt for : IMOCC International-MOE-Culture-Conference 4/1 20XX
+                    </p>
+                    <h3>1.1概要</h3>
+                    <p>
+                        我が国日本は、萌え文化が若者を中心に広く浸透しており、世界中におけるこの文化の中心地となっている。Webページでも同様に、萌を目的として作成しているページは多いが、その多くはCSSによる配色や画像、動画などに依存したもので、Webページでの動的対話型萌は少ないという現状がある。当システムは従来のWebページでは発見できなかった動的対話型萌の実装を目的とし、実際の運用を最終目標とする。
+                    </p>
+                    <h3>2.1構想</h3>
+                    <p>
+                        当システムの構想は以下の図のとおりである。なお、台詞はメイドDBのものを掲載する
+                    </p>
+                    <ol>
+                        <li>ページの左下などの、比較的に目立たない場所に当システムを配置する</li>
+                        <li>萌えキャラのアニメーションを常時敷く</li>
+                        <li>お帰りなさいませご主人様</li>
+                        <li>一定時間経過ごとに嫁がつぶやく</li>
+                        <li>お話する　ことで、嫁と会話できる。なお、こちらの言動は選択肢によって定められる。選択肢によってはサイト・嫁が動的に変化する</li>
+                        <li>黙らせる　と言うことで、嫁から開放させ、一時的に実際の文章などを読みやすくする</li>
+                        <li>黙らせる　を続ける。もしくは選択肢によっては嫁は怒る</li>
+                        <li>怒らせ続けると、嫁は更に怒り、最終的にはブラウザ終了や、一時的なアクセス禁止などといったリアクションが帰ってくる</li>
+                    </ol>
+                    <center> 図2.1 嫁システムの構想</center>
+                    <p>
+                        以上が嫁システムの構想である
+                    </p>
+                    <h3>3.1現在の状況</h3>
+                    <p>
+                        以下に現状を掲示する。<br />
+                        現状では、専用のユーティリティーが一部実装され、表情の変更、嫁の台詞の変化、自分の選択肢の変化といったことが再現できる。
+                        今後の課題として、嫁との会話の追加、ページの状態変更、そして、嫁の画像の入手といった点が上げられる。<br />
+                        以下に、現段階のシステムを表示する <br />
+                        現段階では特定のボタンを押すことで、嫁の台詞の変化、自分の選択肢の変化、嫁の表情の変化が行われる。
+                    </p>
+                    <div id="yome_area" >
+                        <img id="emote_yome" src="yome/sangry.png" /> <br />
+                        <textarea id="say_yome" rows="1" cols="40"> </textarea> <br />
+                        <input type="button" id="choice0" value="0" onClick="pressChoice(0)"/> <br />
+                        <input type="button" id="choice1" value="1" onClick="pressChoice(1)"/> <br />
+                        <input type="button" id="choice2" value="2" onClick="pressChoice(2)"/> <br />
+                        <input type="button" id="choice3" value="3" onClick="pressChoice(3)"/> <br />
+                        
+                        <script type="text/javascript" src="yome.js"> </script>
+                    </div>
+                    <center>図3.1System-YOME の現段階の状態</center>
+                    <h3> 4.1考察 </h3>
+                    <p>
+                        概要でも述べたが、現在のWebページには動的対話型萌は少ない。当システムが、この状況を打ち破ることを期待する　<br/>
+                        その他に、当システムが完全に実装されることで、設置者のページヘのアクセス数増加や、滞在時間の増加といったことが見込めるほか、設置者本人のユニーク度数の増加が見込まれ、リアルワールドにおいても、より活発な人間へと変化すると見込まれる。
+                        当システムの完成時に、萌え文化に与える影響は非常に大きなものになると思われる。
+                    </p>
+                    <h3> 5参考文献</h3>
+                    <p>
+                        [1] april-fool document <br/>
+                        [2] that allow this document to write lie <br />
+                        [3] but i wrote this document not in april -:)
+                    </p>
+								</div>
+								<div id="side">
+                    <div id="link"><a href="index.html">トップページ</a></div>
+                    <div id="link"><a href="hobby.html">趣味のページ</a></div>
+                    <div id="link"> <a href="yome.html">謎ツール？かもしれないもの？</a></div>
+                    <div id="link"> <a href="about_this_page.html">このページについて</a></div>
+                    <div id="link"> <a href="mail.html">送れないメールフォーム</a></div>
+								</div>
+						</div>
+						<div id="footer">
+                このサイトへの無断リンクは禁止しします。<br />
+                連絡は、<a href="mailto:">作成者のメールもどき</a>もしくは、<a href="mail.html">メールフォームもどき</a>におねがいします
+						</div>
+				</div>
+		</body>
+</html>

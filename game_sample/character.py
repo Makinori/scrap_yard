@@ -9,6 +9,8 @@ class Player(Physics):
     super(Player, self).__init__(dict, self.default_color, x,y)
 
     self.change_width(ONE_METER*0.8)
+
+    self.mode = 'normal' # mode : normal, warp
     
     self.move_speed = 3
     self.gravity = 0.1
@@ -19,7 +21,6 @@ class Player(Physics):
     self.left_right_wall, self.bottom_top_wall = None, None
     self.on_floar = False
 
-    self.warping = False
     self.warp_max_delay = 120
     self.warp_passed_time = 0
 
@@ -45,48 +46,6 @@ class Player(Physics):
     if not(self.disappear) :
       super(Player, self).draw(dict)
 
-    
-  def update(self, dict):
-
-    
-    ### warp
-    for warmhole in dict['warmhole_list']:
-      if self.collision(warmhole):
-        self.x = warmhole.exit_x
-        self.y = warmhole.exit_y
-        self.warping = True
-
-        self.flush_frame = -20
-        self.flushing = True
-        
-        break
-    
-    if self.warping :
-      self.warp_passed_time += 1
-      if self.warp_max_delay <= self.warp_passed_time :
-        self.warping = False
-        self.warp_passed_time = 0
-        
-        self.flushing = False
-        
-    ### physics update
-    else :
-      if self.bottom_top_wall=='bottom':
-        self.on_floar = True
-      else:
-        self.on_floar = False
-      
-      self.move_by_keys(dict['event_pressed'])
-    
-      self.ay += self.gravity
-      if self.vy > self.max_falling_speed:
-        self.vy = self.max_falling_speed
-  
-
-      self.update_vec()
-      self.left_right_wall, self.bottom_top_wall = self.adjust(dict["wall_list"])
-    
-      self.update_place()
       
   def move_by_keys(self, pressed_keys):
     if pressed_keys[K_RIGHT]:
@@ -102,6 +61,54 @@ class Player(Physics):
         self.ay -= self.fall_ctrl_acc
       if pressed_keys[K_DOWN]:
         self.ay += self.fall_ctrl_acc
+        
+  def warp_update(self, dict):
+    self.warp_passed_time += 1
+    if self.warp_max_delay <= self.warp_passed_time :
+      self.warp_passed_time = 0
+      
+      self.mode = 'normal'
+      
+      self.flushing = False
+
+  def physics_update(self, dict):
+    if self.bottom_top_wall=='bottom':
+      self.on_floar = True
+    else:
+      self.on_floar = False
+      
+    self.move_by_keys(dict['event_pressed'])
+    
+    self.ay += self.gravity
+    if self.vy > self.max_falling_speed:
+      self.vy = self.max_falling_speed
+  
+    self.update_vec()
+    self.left_right_wall, self.bottom_top_wall = self.adjust(dict["wall_list"])
+    
+    self.update_place()
+    
+  def normal_update(self, dict):
+    self.physics_update(dict)
+    self.warp_check(dict)
+
+  def warp_check(self, dict):
+    for warmhole in dict['warmhole_list']:
+      if self.collision(warmhole):
+        self.x = warmhole.exit_x
+        self.y = warmhole.exit_y
+        self.mode = 'warp'
+
+        self.flush_frame = -20
+        self.flushing = True
+
+        return
+    
+  def update(self, dict):    
+    if self.mode == 'warp' :
+      self.warp_update(dict)
+    elif self.mode == 'normal':
+      self.normal_update(dict)
 
       
 class Wall(Splite):
@@ -119,7 +126,7 @@ class Coin(Splite):
     self.contact_frame = 0
     self.got_coin = 0
 
-    self.max_alone_flame = 600
+    self.max_alone_flame = 60000
     self.alone_frame = 0
     self.left_coin = 0
 

@@ -1,7 +1,3 @@
-'''
-
-
-'''
 
 import sys, os
 import pygame
@@ -17,10 +13,11 @@ from character import *
 from game_object import *
 
 
-#### game
+#### init game
+
 
 def create_map(game_dict, map_dict):
-  
+    
   (player_map_x, player_map_y) = map_dict['player_place']
   player_x, player_y = map_coord_to_screen_coord(player_map_x, player_map_y)
   game_dict['player'] = Player(game_dict, x=player_x, y=player_y)
@@ -49,77 +46,118 @@ def create_map(game_dict, map_dict):
     list(map(lambda crd: Warmhole(game_dict ,x=crd[0], y=crd[1],
                                   exit_x=warp_exit_x, exit_y = warp_exit_y), 
              warp_coord)))
+  
+  
+class Game:
+  def __init__(self):
+    self.game_dict = {}
+
+  def run_game(self):
+    self.init_game()
+    self.game_loop()    
+
+  #### game init
+  
+  def init_game(self):
+    self.system_init()
+    self.data_init()
+
+  def system_init(self):
+    self.game_dict['fps_rate'] = FPS
+    
+    pygame.init()
+    self.game_dict['screen']=pygame.display.set_mode(SCREEN_SIZE)
+    pygame.display.set_caption(u"sample game")
+
+    clock = pygame.time.Clock()
+    self.game_dict['clock'] = clock
+
+    self.game_dict['frame_start'] = pygame.time.get_ticks()
+    self.game_dict['frame_end'] = pygame.time.get_ticks()
+    self.game_dict['fps'] = 0
+    
+    self.game_dict['system_event'] = SystemEvent(dict)
+  
+
+  def data_init(self):
+    self.map_init()
+    
+    self.splite_init()
+
+    self.params_init()
+
+
+  def map_init(self):
+    map_str = maps.map_str
+    coin_coord = maps.map_coins
+    self.game_dict['map_str'] = map_str
+    self.game_dict['coin_coord'] = coin_coord
+    create_map(self.game_dict, maps.read_map(map_str=self.game_dict['map_str'],
+                                             map_coins=self.game_dict['coin_coord']))
+
+  def splite_init(self):
+    self.game_dict['splite_tree'] = [self.game_dict['player'],
+                                     self.game_dict['wall_list'],
+                                     self.game_dict['warmhole_list'],
+                                     self.game_dict['coin']]
+  def params_init(self):
+    param_area = ParamArea(self.game_dict)
+    self.game_dict['param_area'] = param_area
+    self.game_dict['param_list'] = [self.game_dict['param_area']]
+
+    
+  #### game loop
+
+  def game_loop(self):
+    while True :
+      self.update()
+      self.draw()
+      self.delay_frame()
+
+  def update(self):
+  
+    # system
+    self.game_dict['fps'] = self.game_dict['clock'].get_fps()
+  
+    self.game_dict['event'] = copy(pygame.event.get())
+    self.game_dict['event_pressed'] = copy(pygame.key.get_pressed())
+    self.game_dict['system_event'].update(self.game_dict)
+
+    # characters
+    self.game_dict['player'].update(self.game_dict)
+    self.game_dict['coin'].update(self.game_dict)
+  
+    # param_area
+    list(map(lambda param : param.update(self.game_dict),
+             self.game_dict['param_list']))
+
+
+  def draw(self):
+    self.game_dict['screen'].fill((180, 250, 150))
+    list(map(lambda splite : splite.draw(self.game_dict),
+             list_tree_to_list(self.game_dict['splite_tree'])))
+
+    list(map(lambda param : param.draw(self.game_dict),
+             self.game_dict['param_list']))
+    pygame.display.update()
 
   
-def update(dict):
-  
-  # system
-  dict['fps'] = dict['clock'].get_fps()
-  
-  dict['event'] = copy(pygame.event.get())
-  dict['event_pressed'] = copy(pygame.key.get_pressed())
-  dict['system_event'].update(dict)
-
-  # characters
-  dict['player'].update(dict)
-  dict['coin'].update(dict)
-  
-  # param_area
-  dict['param_area'].update(dict)
+  def delay_frame(self):
+    self.game_dict['frame_end'] = pygame.time.get_ticks()
+    pygame.time.wait(round(1000/self.game_dict['fps_rate'])
+                     -(self.game_dict['frame_end'] - self.game_dict['frame_start']))
+    self.game_dict['clock'].tick()
+    self.game_dict['frame_start'] = pygame.time.get_ticks()      
 
 
-def draw(dict):
-  dict['screen'].fill((180, 250, 150))
-  list(map(lambda splite : splite.draw(dict),
-           list_tree_to_list(dict['splite_tree'])))
+#### main
 
-  dict['param_area'].draw(dict)
-  pygame.display.update()
-  
-      
 def main():
-  ### initial
-  game_dict = {}
 
-  # system
-  pygame.init()
-  game_dict['screen']=pygame.display.set_mode(SCREEN_SIZE)
-  pygame.display.set_caption(u"sample game")
+  game = Game()
+  game.run_game()
 
-  clock = pygame.time.Clock()
-  game_dict['clock'] = clock
-
-  game_dict['frame_start'] = pygame.time.get_ticks()
-  game_dict['frame_end'] = pygame.time.get_ticks()
-  game_dict['fps'] = 0
-  
-  game_dict['system_event'] = SystemEvent(dict)
-
-  # data
-  create_map(game_dict, maps.read_map())
-  
-  game_dict['splite_tree'] = [game_dict['player'],
-                              game_dict['wall_list'],
-                              game_dict['warmhole_list'],
-                              game_dict['coin']]
-  
-  param_area = ParamArea(game_dict)
-  game_dict['param_area'] = param_area
-
-  # game loop
-  while True:
-    update(game_dict)
-    draw(game_dict)
-
-    game_dict['frame_end'] = pygame.time.get_ticks()
-    pygame.time.wait(round(1000/FPS)-(game_dict['frame_end']- game_dict['frame_start']))
-    game_dict['clock'].tick()
-    game_dict['frame_start'] = pygame.time.get_ticks()
-
-  
-
-
-
+    
 if __name__ =="__main__":
   main()
 

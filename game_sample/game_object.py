@@ -42,8 +42,8 @@ class ParamArea(Object):
 
   def draw_text_list (self, screen, text_list, x=0, y=0):
     pygame.draw.rect(screen, (0,0,255), Rect(x-5,y-5,
-                                             self.line_length*self.char_width*0.5+5,
-                                             self.line_length*len(text_list)*0.8+5),
+                                             self.line_length*self.char_width*0.4+5,
+                                             self.line_length*len(text_list)*0.7+5),
                      2)
     for i in range(len(text_list)):
       screen.blit(text_list[i], (x, y+i*self.char_width))
@@ -65,8 +65,9 @@ class ParamArea(Object):
        "fps : " + str(dict['fps']),
        "left up down up : "+   str(pressed_list),
        "=== player ============================== ",
+       str(dict['player']),
        "x, y : "+ str(int(dict['player'].x))[:5]+ " , "+ str(int(dict['player'].y))[:5],
-       "warp, on_floar: "+ str(dict['player'].warping)+ ", "+ str(dict['player'].on_floar),
+       "mode, on_floar: "+ str(dict['player'].mode)+ ", "+ str(dict['player'].on_floar),
        "=== coin =============================== ",
        "x, y : " + str(int(dict['coin'].x))[:5]+ ", "+ str(int(dict['coin'].y))[:5],
        "touch, leave : " + coin_frame,

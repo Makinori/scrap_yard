@@ -10,7 +10,15 @@ def map_coord_to_screen_coord(x, y,
                               width=CHARACTER_WIDTH, half_width=int(CHARACTER_WIDTH/2)):
   return (x*width+half_width, y*width+half_width)
 
+def screen_coord_to_map_coord(x, y,
+                              width = CHARACTER_WIDTH):
+  return (round(x/width), round(y/width))
 
+def relative_map_coord(splite1, splite2):
+  dx = splite2.x - splite1.x
+  dy = splite2.y - splite1.y
+  
+  return (round(dx/CHARACTER_WIDTH), round(dy/CHARACTER_WIDTH))
   
 class Object:
   def __init__(self, dict):

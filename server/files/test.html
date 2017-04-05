@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>テストページ(記事)</title>
+    
+    <meta http-equiv="content-style-type" content="text/css" />
+    <link rel="stylesheet" type="text/css" href="template/css/reset.css" /> 
+    <link rel="stylesheet" type="text/css" href="template/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="template/css/frame.css" />
+    <link rel="stylesheet" type="text/css" href="template/css/frame-parts.css" />
+    
+    
+
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <!-- <script language="JavaScript" type="text/javascript" src="web.js"></script> -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+  </head>
+
+  
+  <body>    
+    <div class="page-frame header">
+      makinori Ikegami's home page <br />
+      this is home paage of Makinori Ikegami. this is home paage of Makinori Ikegami. this is home paage of Makinori Ikegami. this is home paage of Makinori Ikegami. this is home paage of Makinori Ikegami. this is home paage of Makinori Ikegami.
+    </div> 
+
+    <div class="page-frame wrapper">
+      <div class="page-frame main">        
+        <div class="article">
+          <div class="part head">
+            <h1> ページの公開にあたって自己紹介をしようと思う </h1>
+            entry : 1899/13/33 Mon 25:99-00 <br />
+            update : 2199/13/33 Mon 25:99-00
+          </div>
+          
+          <div class="part content">
+            <div class="chapter">
+              <h3>背景</h3>
+              <p>
+                勉強のために<br />
+                自分が成果物の整理をするときに便利そうなものを作りたかった              
+              </p>
+            </div>
+            <div class="chapter">
+              <h3>設計方針</h3>
+              <p>成果発表のような物が多くなるため、とにかく可読性が高く、ストレスの溜まらない設計を目指す</p>
+            </div>
+            <div class="chapter">
+              <h3>機能</h3>
+              <p>以下に当サイトの持つ機能を書いていく</p>
+              <div class="section">
+                <h4>記事</h4>
+                <p>他の多くのブログのごとく。　論文風に表示できるようにもする(章立て・章追い) <br />章追い:右などに、自分のいま存在する章を表示する。
+                </p>
+                <div class="subsection">
+                  <h5> 記事の詳細1 </h5>
+                  <p> 記事の詳細1</p>
+                </div>
+                <div class="subsection">
+                  <h5> 記事の詳細2 </h5>
+                  <p> 記事の詳細2</p>
+                </div>
+                <div class="subsection">
+                  <h5> 記事の詳細3 </h5>
+                  <p> 記事の詳細3</p>
+                </div>
+                <div class="subsection">
+                  <h5> 記事の詳細4 </h5>
+                  <p> 記事の詳細4</p>
+                </div>
+                <p>参考</p>
+                <ul>
+                  <li> <a href="http://qiita.com/higuma/items/3344387e0f2cce7f2cfe#github-flavored-markdown"> qiitaの右側 </a> </li>
+                  <li> <a href="http://qiita.com/higuma/items/3344387e0f2cce7f2cfe#github-flavored-markdown"> 偶然このページで見つけた </a> </li>
+                  <li> <a href="http://qiita.com/higuma/items/3344387e0f2cce7f2cfe#github-flavored-markdown"> http://qiita.com/higuma/items/3344387e0f2cce7f2cfe#github-flavored-markdown </a> </li>
+                </ul>
+              </div>
+              <div class="section">
+                <h4>ログ</h4>
+                <p>ページごとに、何時、何を、誰がどのようにを変更したかをdiff形式で見られる。diffに対してコメントを付けられる　<br /> logとコメントの組み合わせで、ブログのようなシステムが作れる。
+                </p>
+              </div>
+              <div class="section">
+                <h4>サイトマップ</h4>
+                <p>開いているサイトを中心とした、リンクのマップが作成される</p>
+              </div>
+              <div class="section">
+                <h4>解析</h4>
+                <p>アクセス解析を行う</p>
+              </div>
+              <div class="section">
+                <h4>編集</h4>
+                <p>サイトマップの編集・記事の編集が主な機能となり、　この2つにより、他の項目は自動生成される</p>
+              </div>
+              <div class="section">
+                <h4>専用言語</h4>
+                <p>記事の作成で利用する言語。markdownのようなもの。Javascript/サーバ用のトリガの記述ができ、アップロード機能と合わせると、特殊な機能が必要な、トップページや通信用フォームさえも作れる</p>
+              </div>
+              <div class="section">
+                <h4>アップロード機能</h4>
+                <p>
+                  HTML JS サーバ用機能　CSS 画像　など、木構造で管理される。
+                  順序は並べた順につく。ファイルシステムが存在し、データベースにそれらへのポインタが含まれる。
+                  全てのファイルに対しfilename@difとfilenameが作成される。　これにより、全てのファイルに対してdiffが発生する</p>
+              </div>
+              <div class="section">
+                <h4>URL</h4>
+                <p> domain.com/path/to/page について、[path][#content][@eval-type] の形のURLをとり、PathはDBに登録されているパス名、contentはDBのpath項目にあるcontent名、eval-typeは評価の形式であるである。省略される場合がある 例として </p>
+                <ol>
+                  <li> path/to/page の場合、メインフレーム内に、fileの形式に対応したデザインで、pageの内容を評価したテキストが配置される =content,typeが特定の場合　評価する</li>
+                  <li> path/to/page@file の場合、ダウンロードされる。ブラウザ上には主にプレテキストとして表示される場合がある　評価しない</li>
+                  <li> path/to/page#content の場合、contentで指定された要素を取り出して、pageと同様に処理する 評価する</li>
+                  <li> path/to/page#content@data の場合、contentで指定されたデータベースの要素を取り出して、@fileと同様の処理をする 評価する</li>
+                  <li> path/to/page#abstract-list@view の場合、子のなかのdataの概要を取り出して、pageと同様の処理をする 評価する</li>
+                </ol>
+                <p>
+                  また、URLを用いたフォームなどの通信を禁止する。Ajaxを使うこと <br />
+                  DBはパス名と、実際のディレクトリへのパスを格納する。
+                </p>
+              </div>
+              <div class="section">
+                <h4>コアについて</h4>
+                <p>サイトマップ編集/記事編集/ログ機能 この3つが集中的に実装すべきものになる</p>
+              </div>
+            </div>
+            <div class="chapter">
+              <h3>その他</h3>
+              <ul>  
+                <li> h&lt;n&gt;系統のタグはh3,h4,h5を基本とし,h1は記事の一番上のみ,h6は利用しない </li>
+                <li> 記事とは、親に対するコメントのことである </li>
+              </ul>
+            </div>
+
+            <div class="chapter">
+              
+              <h3>サンプルタグについて</h3>
+              <p> 以下、サンプルタグになります。ご利用の際は参考にしてみてください。 </p>
+              <p> 以下h-x系タグ。段組をしていない　ｰ>　上下の余白が存在しない </p>
+              <h1>h1タグ</h1>
+              <h2>h2タグ</h2>
+              <h3>h3タグ</h3>
+              <h4>h4タグ</h4>
+              <h5>h5タグ</h5>
+              <h6>h6タグ</h6>
+              <p>段組と段落のテスト</p>
+              <div class="chapter">
+                <h3> chap1 </h3>
+              </div>
+              <div class="chapter">
+                <h3> chap2 </h3>
+                <div class="section">
+                  <h4> sec1 </h4>
+                </div>
+                <div class="section">
+                  <h4> sec2 </h4>
+                  <div class="subsection">
+                    <h5> subsec1 </h5>
+                  </div>
+                  <div class="subsection">
+                    <h5> subsec2 </h5>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <p>
+                <em>強調（em）</em>
+                <strong>より強い強調（strong）</strong>
+                <ins>追加（ins）</ins>
+                <del>削除（del）</del>
+                <br />
+                <a href="#">テキストアンカー</a>
+                <a href="nil"> リンク出来ないアンカー </a>
+              </p>
+              <h4>リスト</h4>
+              <h5>普通のリスト</h5>
+              <ul>
+                <li>普通のリスト1</li>
+                <li>普通のリスト2</li>
+                <li>普通のリスト3</li>
+                <li> 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト 長いリスト </li>
+              </ul>
+              <h5>番号付きリスト</h5>
+              <ol>
+                <li>番号付きリスト1</li>
+                <li>番号付きリスト2</li>
+                <li>番号付きリスト3<br />li要素の中はブロックレベルのタグを使用することが出来ます。例えば、&lt;p&gt;タグも記述することが出来ます。<br /></li>
+                <li>長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　長い番号付きリスト　</li>
+              </ol>
+              <h5>定義リスト</h5>
+              <dl>
+                <dt>定義リスト1</dt>
+                <dd>定義した用語の説明</dd>
+                <dt>定義リスト2</dt>
+                <dd>定義した用語の説明</dd>
+                <dt>定義リスト3</dt>
+                <dd>定義した用語の説明<br />dd要素の中はブロックレベルのタグを使用することが出来ます。例えば、&lt;p&gt;タグも記述することが出来ます。しかし、dt要素にはインライン要素しか記述することができません。</dd>
+              </dl>
+              <h4>テーブル</h4>
+              <table summary="">
+                <tbody><tr><th>見出し1</th><th>見出し2</th><th>見出し3</th><th>見出し4</th><th>見出し5</th></tr>
+                  <tr><td>セル1</td><td>セル2</td><td>セル3</td><td>セル4</td><td>セル5</td></tr>
+                  <tr><td>セル1</td><td>セル2</td><td>セル3</td><td>セル4</td><td>セル5</td></tr>
+                  <tr><td>セル1</td><td>セル2</td><td>セル3</td><td>セル4</td><td>セル5</td></tr>
+                </tbody></table>
+
+            </div>
+          </div>
+          <div class="part foot">
+            記事の詳細データなどが入る
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class="page-frame side">
+        <div class="side-navi">
+          <div class="part page-states">
+            <div class="hpcss"> ページごとに存在する項目 </div>
+            <ul>
+              <li> 記事 page#root@view = page </li>
+              <li> 更新履歴 page#log@view </li>
+              <li> コメント page#comment@view </li>
+              <li> ページの編集 page#root@edit </li>
+              <li> 記事に関するデータの詳細　日時　階層　タグなど 履歴が要らなくなるかもしれない  page#datas </li>
+            </ul>
+          </div>
+          <div class="part links">
+            <div class="hpcss"> 全ページに対する主要なリンク <br /> リンクは未実装 </div>
+            <ul>
+              <li><a href="nil"> トップページ domain.com#root@view=domain.com </a></li>
+              <li><a href="#"> 更新履歴 domain.com#tree-log@view all-log:更新の全ては更新形式でここに保存される </a></li>
+              <li><a href="nil"> サイトマップ domain.com#tree-tree@view</a></li>
+              <li><a href="nil"> ブログ domain.com#root-blog@view 数行ずつ表示。遷移するとurlが記事のものに変化する　</a></li>
+              <li><a href="#"> お問い合わせ mail#article@view </a></li>
+              <li><a href="#"> 解析　domain.com#解析@view </a></li>
+              <li><a href="#"> dir構造の編集 domain.com#root@edit。全てのページに適用される設定も、ここで編集する </a></li>
+            </ul>
+          </div>
+          <div class="part page-tree">
+            <div class="hpcss"> URL空間の 親・同列・子が一覧で表示される </div>
+            <ul>
+              <li> 親の親 
+                <ul> <li> 親
+                  <ul> <li> 同列1 </li></ul>
+                  <ul> <li> 同列2 </li></ul>
+                  <ul> <li> 自分　
+                    <ul> <li> 孫1 </li></ul>
+                    <ul> <li> 孫2 </li></ul>
+                  </li></ul>
+                  <ul> <li> 同列3 </li></ul>
+                </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-frame footer">
+      ここにフッタ
+      連絡先 hoge@hoge.com
+
+    </div>
+  </body>
+</html>
+
+

@@ -144,6 +144,8 @@ class Game:
   
   def delay_frame(self):
     self.game_dict['frame_end'] = pygame.time.get_ticks()
+    if self.game_dict['fps_rate'] == 0:
+      self.game_dict['fps_rate'] = 1
     pygame.time.wait(round(1000/self.game_dict['fps_rate'])
                      -(self.game_dict['frame_end'] - self.game_dict['frame_start']))
     self.game_dict['clock'].tick()

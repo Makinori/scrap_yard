@@ -55,10 +55,10 @@
              (setf current-color-pane
                    (make-pane 'application-pane :min-height 100 :max-height 100
                               :background (make-rgb-color red green blue)))
-             (horizontally (:min-height 200 :max-height 200)
-               (1/2 (make-color-slider 'red red "Red"))
-               (1/4 (make-color-slider 'green green "Green"))
-               (1/4 (make-color-slider 'blue blue "Blue")))
+             (horizontally (:min-height 50 :max-height 50)
+               (1/2 (make-color-slider 'red red "RED"))
+               (1/4 (make-color-slider 'green green "GREEN"))
+               (1/4 (make-color-slider 'blue blue "BLUE")))
              +fill+
              (setf drag-feedback-pane
                    (make-pane 'application-pane :min-height 100 :max-height 100

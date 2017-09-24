@@ -14,7 +14,7 @@
 (define-application-frame draw-frame ()
   ((lines :accessor lines :initform nil)
    (strings :accessor strings :initform nil))
-  (:panes ;(draw-pane (make-pane 'draw-pane))
+  (:panes (draw-pane (make-pane 'draw-pane))
    
           (interactor :interactor))
   (:layouts (default-default (vertically ()
@@ -25,7 +25,7 @@
   (:top-level (default-frame-top-level)))
 
 (defclass draw-pane
-    (standard-expanded-input-stream
+    (standard-extended-input-stream
      basic-pane
      permanent-medium-sheet-output-mixin)
   ())
@@ -52,16 +52,17 @@
           lines))
     (update-draw-pane))
 
-(define-draw-frame-command (com-draw-clear :menu t :name t) 
-    ()
+(define-draw-frame-command (com-draw-clear :menu t :name t)()
   (with-slots (lines strings) *application-frame*
     (setf lines nil strings nil))
   (update-draw-pane))
 
 (defun update-draw-pane ()
+  (print "hoge")
   (repaint-sheet (find-pane-named *application-frame* 'draw-pane) +everywhere+))
 
 ;; UI 
+
 
 (defmethod handle-event ((pane draw-pane) (event pointer-button-press-event))
   (when (eql (pointer-event-button event) +pointer-left-button+)
@@ -78,18 +79,18 @@
 (defun track-line-drawing (pane startx starty)
   (let ((lastx startx)
         (lasty starty))
-    (with-drawing-options (pane )
+    (with-drawing-options (pane :ink +flipping-ink+)
       (draw-line* pane startx starty lastx lasty)
       (tracking-pointer (pane)
-        (:pointer-motion 
-         (&key x y)
+        #|(:pointer-motion 
+         (&key window x y)
          (draw-line* pane startx starty lastx lasty)
          (draw-line* pane startx starty x y)
-         (setq lastx x lasty y))
+         (setq lastx x lasty y))|#
         (:pointer-button-release 
          (&key event x y)
          (when (eql (pointer-event-button event) +pointer-left-button+)
-           (draw-line* pane startx starty lastx lasty)
+           ;;(draw-line* pane startx starty x y)
            (execute-frame-command *application-frame*
                                   `(com-draw-add-line ,startx ,starty ,x ,y))
            (return-from track-line-drawing nil)))
@@ -122,7 +123,7 @@
                               `(com-draw-add-string ,current-string ,current-x ,current-y))
        (return-from track-text-drawing nil)))))
 
-(defun run-draw-app ()
+(defun run-simple-draw ()
   (run-frame-top-level (make-application-frame 'draw-frame)))
 
 

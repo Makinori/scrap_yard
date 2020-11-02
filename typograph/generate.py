@@ -25,7 +25,7 @@ def split_kanji(text):
     return tuple_list
 
 
-num_col = 6
+num_col = 7
 
 def generate_list(kanji_tuple_list):
     text = "| "
@@ -33,11 +33,12 @@ def generate_list(kanji_tuple_list):
         for col in range(num_col):
             try:
                 tuple= kanji_tuple_list[row*num_col+col]
-                c = tuple[0] + " | " + tuple[1]
+                # c = tuple[0] + " " + tuple[1]
+                c = "　" + "  " + "　"
             except:
-                c = "   |   "
-            text += c + " | "
-        text += "\n| "
+                c = "       "
+            text += c + "|"
+        text += "\n|"
     return text[:-2]
     
 
